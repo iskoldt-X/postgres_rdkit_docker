@@ -1,6 +1,7 @@
 # PostgreSQL Docker Image with RDKit Cartridge
 
 [![Build Multi-Arch Docker Image](https://github.com/protwis/postgres_rdkit_docker/actions/workflows/build_multi_arch.yml/badge.svg)](https://github.com/protwis/postgres_rdkit_docker/actions/workflows/build_multi_arch.yml)
+[![GHCR](https://img.shields.io/badge/GHCR-ghcr.io%2Fprotwis%2Fpostgres__rdkit__docker-blue?logo=github)](https://github.com/protwis/postgres_rdkit_docker/pkgs/container/postgres_rdkit_docker)
 
 
 A PostgreSQL 16 Docker image with the RDKit cartridge pre-installed and optimized for chemical informatics workloads.
