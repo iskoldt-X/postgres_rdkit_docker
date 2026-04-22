@@ -1,8 +1,6 @@
 # PostgreSQL Docker Image with RDKit Cartridge
 
-[![Build Multi-Arch Docker Image](https://github.com/iskoldt-X/docker-postgres-rdkit/actions/workflows/build_multi_arch.yml/badge.svg)](https://github.com/iskoldt-X/docker-postgres-rdkit/actions/workflows/build_multi_arch.yml)
-[![Docker Pulls](https://img.shields.io/docker/pulls/iskoldt/postgres16-rdkit?logo=docker&logoColor=white)](https://hub.docker.com/r/iskoldt/postgres16-rdkit)
-[![Docker Image Size (latest)](https://img.shields.io/docker/image-size/iskoldt/postgres16-rdkit/latest?logo=docker&logoColor=white)](https://hub.docker.com/r/iskoldt/postgres16-rdkit)
+[![Build Multi-Arch Docker Image](https://github.com/protwis/postgres_rdkit_docker/actions/workflows/build_multi_arch.yml/badge.svg)](https://github.com/protwis/postgres_rdkit_docker/actions/workflows/build_multi_arch.yml)
 
 
 A PostgreSQL 16 Docker image with the RDKit cartridge pre-installed and optimized for chemical informatics workloads.
@@ -47,7 +45,7 @@ Copy and paste this entire block into your terminal:
 cat > docker-compose.yml << 'EOF'
 services:
   db:
-    image: iskoldt/postgres16-rdkit:latest
+    image: ghcr.io/protwis/postgres16-rdkit:latest
     container_name: postgres-rdkit
     restart: always
     shm_size: 2g
@@ -135,7 +133,7 @@ Copy and paste this entire block into PowerShell:
 @'
 services:
   db:
-    image: iskoldt/postgres16-rdkit:latest
+    image: ghcr.io/protwis/postgres16-rdkit:latest
     container_name: postgres-rdkit
     restart: always
     shm_size: 2g
@@ -305,14 +303,14 @@ See the [official postgres image](https://hub.docker.com/_/postgres/) for more d
 
 ### Automated Builds via GitHub Actions
 
-Images are automatically built and published to Docker Hub via GitHub Actions when:
+Images are automatically built and published to GitHub Container Registry (ghcr.io) via GitHub Actions when:
 - Code is pushed to the `main` branch
 - The workflow is manually triggered
 
 The build process:
 - Builds multi-architecture images (AMD64 and ARM64)
 - Tags images with both `latest` and date-based versions (YYYY.MM.DD format)
-- Publishes to Docker Hub as `iskoldt/postgres16-rdkit`
+- Publishes to GitHub Container Registry as `ghcr.io/protwis/postgres16-rdkit`
 
 See `.github/workflows/build_multi_arch.yml` for the build configuration.
 
@@ -321,7 +319,7 @@ See `.github/workflows/build_multi_arch.yml` for the build configuration.
 To build the image manually:
 
 ```bash
-docker build -t iskoldt/postgres16-rdkit:latest .
+docker build -t ghcr.io/protwis/postgres16-rdkit:latest .
 ```
 
 The Dockerfile uses a multi-stage build:
@@ -336,7 +334,7 @@ Example with custom RDKit version:
 ```bash
 docker build \
   --build-arg RDKIT_VERSION=Release_2024_09_2 \
-  -t iskoldt/postgres16-rdkit:custom .
+  -t ghcr.io/protwis/postgres16-rdkit:custom .
 ```
 
 ## Configuration
@@ -380,7 +378,7 @@ docker run -d \
   --name postgres-rdkit \
   -v /path/to/custom/postgresql.conf:/etc/postgresql/postgresql.conf \
   -e POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password \
-  iskoldt/postgres16-rdkit:latest \
+  ghcr.io/protwis/postgres16-rdkit:latest \
   postgres -c config_file=/etc/postgresql/postgresql.conf
 ```
 
