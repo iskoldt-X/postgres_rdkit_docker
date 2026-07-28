@@ -95,4 +95,10 @@ ENV POSTGRES_USER=protwis
 # Custom Configuration (Kept at the end to preserve cache during config tuning)
 COPY --chown=postgres:postgres postgresql.conf /etc/postgresql/postgresql.conf
 
+# Planner cost hints for the cartridge. Deliberately NOT run automatically: the
+# rdkit extension is created by the application's migrations rather than at initdb
+# time, so there is nothing to ALTER while docker-entrypoint-initdb.d executes.
+# Apply it once per database after CREATE EXTENSION rdkit -- see README.
+COPY rdkit-tuning.sql /usr/local/share/postgresql/rdkit-tuning.sql
+
 CMD ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
